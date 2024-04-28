@@ -1,0 +1,13 @@
+<% config.override = false %>
+import { publicProcedure, router } from './router.utils.js';
+
+const rootRouter = router({
+  ping: publicProcedure.query(() => {
+    return 'pong';
+  }),
+});
+
+type RootRouter = typeof rootRouter;
+
+export type { RootRouter };
+export { rootRouter };

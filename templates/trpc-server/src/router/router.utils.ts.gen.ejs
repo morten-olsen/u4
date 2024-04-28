@@ -1,0 +1,21 @@
+<% config.override = false %>
+import { initTRPC } from '@trpc/server';
+import { CreateFastifyContextOptions } from '@trpc/server/adapters/fastify';
+import superjson from 'superjson';
+
+type ContextOptions = {};
+
+const createContext = async ({}: ContextOptions) => {
+  return async ({ req }: CreateFastifyContextOptions) => {
+    return {
+    };
+  };
+};
+
+type Context = Awaited<ReturnType<typeof createContext>>;
+
+const { router, procedure: publicProcedure } = initTRPC.context<Context>().create({
+  transformer: superjson,
+});
+
+export { createContext, router, publicProcedure };
